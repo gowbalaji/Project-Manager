@@ -47,7 +47,7 @@ Get the idea into one short brief. Ask only what you cannot infer, in one messag
 - Audio: dialogue lines (verbatim), music or none, sound effects
 - Budget: a credit ceiling for this production, if they have one
 
-On Magnific, call `video_plan` with the raw idea — it is free and returns a brief, open questions and a model suggestion. Use it as input, not as the final word.
+On Magnific, call `video_plan` once with the raw idea — it costs a few credits (~16) and returns a brief, open questions and a model suggestion. Use it as input, not as the final word: it has recommended model slugs that do not exist in the catalog, and it tends to route dialogue through text-to-speech plus a separate lip-sync pass, which costs more than a model with native dialogue (Seedance 2.5). Validate every slug it suggests against the model catalog before costing.
 
 ### 2. SHOT LIST (free)
 
@@ -62,7 +62,7 @@ Keep shots short and simple. Every extra action, character or camera move inside
 Before any video, make stills:
 
 - **Characters:** one clean reference per character (neutral grey background, even light, front-facing, chest-up), plus full-body if wardrobe matters. Reuse existing references if the user has them — don't regenerate what exists.
-- **First frames:** one still per shot showing the exact opening composition — who stands where, lens feel, light, wardrobe.
+- **First frames:** one still per shot showing the exact opening composition — who stands where, lens feel, light, wardrobe. Generate each first frame *with the character refs as image references*, so identity is baked into the frame. This matters because some models (Seedance 2.5 on Magnific) cannot take a start frame and references in the same call — the start frame then carries identity on its own.
 
 Generate 2–4 variants in one call rather than separate calls. Let the user pick. Fix framing, faces, wardrobe and light here: an edit at this stage costs ~100 credits; the same fix after video costs 1,000–4,000.
 

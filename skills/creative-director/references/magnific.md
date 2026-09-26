@@ -7,7 +7,7 @@ Prices below were read from Magnific's own `simulate_cost` in September 2026. Tr
 | Stage | Tool | Cost |
 |---|---|---|
 | Balance | `account_balance` | free |
-| Brief | `video_plan` (call first for any video) | free |
+| Brief | `video_plan` (call first for any video) | ~16 credits |
 | Model catalog | `video_models_list`, `images_models_list` (use `search` to keep output small) | free |
 | Cost check | `simulate_cost` with `tool` + the exact `arguments` you will send | free |
 | Stills | `images_generate` (`count` 1–8 for variants of one prompt) | paid |
@@ -41,7 +41,7 @@ Prices below were read from Magnific's own `simulate_cost` in September 2026. Tr
 | Runway Gen 4.5 / Act Two | `runway-gen45`, `runway-act-two` | |
 | Omni Human lip-sync | `bytedance-omnihuman-lipsync` | |
 
-If a slug is rejected, the error lists all valid slugs — use that list.
+If a slug is rejected, the error lists all valid slugs — use that list. `video_plan` has suggested slugs that do not exist (e.g. `kling-2-1`); check every suggested slug before costing.
 
 ## Seedance 2.5 limits on Magnific
 
@@ -63,6 +63,9 @@ If a slug is rejected, the error lists all valid slugs — use that list.
 | Seedance 2.5, 1080p | 3,950 |
 | Still — Nano Banana Pro (`imagen-nano-banana-2`) | 75 |
 | Still — Seedream 5 Pro (`seedream-5-pro`) | 100 |
+| 2 variants in one call (`count: 2`) | 150 (Nano Banana Pro) / 200 (Seedream 5 Pro) |
+
+A start keyframe did not change the Seedance 2.5 price, and 9:16 costs the same as 16:9.
 
 Draft and 480p cost the same on Seedance 2.5 — use 480p for drafts, it is easier to judge.
 
