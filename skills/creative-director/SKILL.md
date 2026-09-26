@@ -29,7 +29,7 @@ Then read the matching reference file before doing anything else — it has the 
 
 Limits differ between platforms even for the same model (for example, Seedance 2.5 image references). Never carry a limit over from memory or from another skill; use the reference file, and when in doubt read the live model catalog.
 
-Check the balance at the start of a production and tell the user how many credits they have and roughly how many final clips that buys.
+Check the balance at the start of a production and tell the user how many credits they have and roughly how many final clips that buys. Re-check it after every paid stage and compare the drop against the sum of that stage's per-creation `credits`. If the balance fell by more, say so plainly — the account may be in use elsewhere (website, another session), and the user's budget math is off until they know why.
 
 ---
 
