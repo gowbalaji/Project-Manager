@@ -64,7 +64,7 @@ Before any video, make stills:
 - **Characters:** one clean reference per character (neutral grey background, even light, front-facing, chest-up), plus full-body if wardrobe matters. Reuse existing references if the user has them — don't regenerate what exists.
 - **First frames:** one still per shot showing the exact opening composition — who stands where, lens feel, light, wardrobe. Generate each first frame *with the character refs as image references*, so identity is baked into the frame. This matters because some models (Seedance 2.5 on Magnific) cannot take a start frame and references in the same call — the start frame then carries identity on its own.
 
-Generate 2–4 variants in one call rather than separate calls. Let the user pick. Fix framing, faces, wardrobe and light here: an edit at this stage costs ~100 credits; the same fix after video costs 1,000–4,000.
+When a character looks at or toward someone, the first frame must already show that eyeline pointing at the other person's position — a video model keeps the eyeline it starts with. Generate 2–4 variants in one call rather than separate calls. Let the user pick. Fix framing, faces, wardrobe and light here: an edit at this stage costs ~100 credits; the same fix after video costs 1,000–4,000.
 
 **Gate:** user approves the character refs and each first frame.
 
@@ -131,6 +131,7 @@ If a file system is available, append it to `creative-director-log.md` in the us
 - [ ] **Visible, not abstract:** no mood words without a physical description ("tense" → "jaw locked, shoulders raised").
 - [ ] **Directions are labelled** screen-left/right or character's own left/right.
 - [ ] **No self-contradiction:** CRITICAL blocks and ACTION TIMING agree (e.g. "pour lasts the whole shot" vs "tumblers meet at the end"). The model resolves conflicts its own way.
+- [ ] **Eyelines point at their target:** every "looks toward X" names a direction that matches X's position in the Geometry Map, in the same frame of reference (never "camera-left" for the look and "her right shoulder" for the target).
 - [ ] **No audible cues near dialogue** (breath, sigh, exhale) unless you want them heard.
 - [ ] **Resolution matches the stage:** draft settings for drafts, final settings only for approved shots.
 - [ ] **Cost checked** and shown.
@@ -154,6 +155,7 @@ Name the failure first, then change the one thing that causes it. A retry with t
 | Background music when none wanted | Default audio | Platform's no-music flag (Magnific `noMusic`) + say "no music" |
 | Camera does something else | Conflicting camera words | One camera register; platform camera-motion preset if available |
 | Style drifts (photoreal → 3D look) | Missing style anchor | Add style prefix with "NOT a 3D render, NOT a game engine" |
+| Eyeline misses the other character | Look direction and target position written in different frames of reference; first frame already had the wrong eyeline | State both screen-relative; fix the eyeline in the first frame (a still) before redrafting video |
 | Continuity break between shots | New first frame each shot | Last frame of previous shot as next start keyframe |
 
 If the same shot fails twice after targeted fixes, stop and change the approach: split it, change the model, or change the first frame. Tell the user what you are changing and why.
