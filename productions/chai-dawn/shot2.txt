@@ -1,0 +1,41 @@
+1 continuous shot. Total 5 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+STYLE: 8K photorealism, organic film grain and soft halation, high dynamic range, large-format film look. NOT a 3D render, NOT a game engine, NOT a cartoon. Skin: pore-level texture, fine vellus hair, natural asymmetry, no smoothing, no heavy makeup. Technical: 24fps with natural motion blur, no flicker, no warping, no morphing, no frame interpolation.
+
+NO ON-SCREEN TEXT — CRITICAL: no on-screen text of any kind anywhere in frame at any point. No captions, no subtitles, no burned-in dialogue, no titles, watermarks, logos, signage lettering or UI overlays.
+
+THE SCRIPT — CRITICAL: these are the only words spoken in this take, spoken exactly as written, once, by the young woman. Nothing improvised, added, paraphrased or repeated. No extra words before or after.
+1. The young woman: "Best chai in the city."
+
+ONE MOUTH SPEAKS: only the young woman speaks. The vendor in the background never speaks and his mouth stays closed.
+
+ASSETS: the young woman in the start frame = 24-year-old Tamil woman, warm medium-brown skin, oval face, large dark brown eyes, small nose stud on the left nostril, tiny black bindi, long black braid over her right shoulder, damp strands at her forehead. Mustard-yellow hooded raincoat, hood down, over a white cotton kurta, small gold hoop earrings. Voice: young, warm, soft alto, gentle Tamil-accented English, unhurried. THIS SCENE: enjoying her chai, content, then a warm smile. 100% match to the start frame. The chai vendor in the background = off-white vest, red towel, out of focus at his stall. 100% match to the start frame.
+
+GEOMETRY MAP: woman foreground, chest-up, three-quarter to camera, facing camera-left. Vendor background behind her right shoulder, soft focus. Stall bulb camera-left.
+
+FIRST FRAME: open on the composition of the start frame exactly — glass at her lips, mid-sip. No static hold.
+
+LENS: 47 degrees (50mm), eye level, shallow depth of field on her face. No focal drift.
+
+CAMERA: locked-off, tripod-still. No push, no shake.
+
+LIGHT & COLOUR: warm amber key from the stall bulb camera-left falling across her face; cool blue dawn rim from behind on her hair and raincoat. Colour: 60% cool blue-grey street and sky, 25% mustard yellow from the raincoat, 15% warm amber from the bulb and chai.
+
+ATMOSPHERE: clean air. Thin steam rises only from the glass, drifting past her cheek and dissolving within 15cm. Fine rain falls in the background only.
+
+ACTION TIMING:
+0.0–1.5s: she finishes the sip, eyes half-closed, then lowers the glass slowly to chest height with both hands.
+1.5–2.2s: she opens her eyes, exhales through her nose, a smile spreading.
+2.2–3.8s: she looks slightly camera-left toward the stall and says "Best chai in the city." The vendor in the background says nothing in this beat: he wipes the counter with his towel, out of focus.
+3.8–5.0s: she holds the smile, lifting the glass a few centimetres in a small toast. Mouth closed after the line.
+
+PHYSICS: the glass holds real liquid that tilts level as she lowers it; raindrops bead and stay on the raincoat shoulders; the braid rests with weight. Nothing floats.
+
+ACTING: natural blinking, brows lifting softly on "Best", eyes crinkling with the smile. She never looks into the lens.
+
+AUDIO: diegetic, recorded outdoors under a tarpaulin roof, close and present.
+Line 1 — the young woman, 2.2–3.8s: "Best chai in the city." — warm and quiet, conversational volume, gentle Tamil-accented English, a small breath before the line, stress on "Best", pitch lifting slightly and settling on "city", said through a smile.
+Ambience: soft rain on the tarpaulin, a faint clink of a steel tumbler from the stall.
+These are the only words spoken. No music, no score, no humming, no ambient pad, no background voices.
+
+LOCKS: sip, lower, smile, line, toast — in that order. Same face, nose stud, bindi, braid and raincoat throughout. Vendor stays out of focus and silent. Light direction constant. No text anywhere.

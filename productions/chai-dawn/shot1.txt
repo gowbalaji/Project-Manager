@@ -1,0 +1,35 @@
+1 continuous shot. Total 5 seconds, no cuts. Real-time throughout, no slow motion, no speed ramping.
+
+STYLE: 8K photorealism, organic film grain and soft halation, high dynamic range, large-format film look. NOT a 3D render, NOT a game engine, NOT a cartoon. Skin: pore-level texture, fine grey stubble, natural asymmetry, no smoothing. Technical: 24fps with natural motion blur, no flicker, no warping, no morphing, no frame interpolation.
+
+NO ON-SCREEN TEXT — CRITICAL: no on-screen text of any kind anywhere in frame at any point. No captions, subtitles, titles, watermarks, logos, signage lettering or UI overlays.
+
+THE POUR — CRITICAL: one continuous unbroken stream of milky brown chai flows from the raised steel tumbler in his right hand down into the lower steel tumbler in his left hand for the whole shot. The stream never breaks, never splashes outside the tumbler, never floats. Both tumblers stay solid, the same size and shape in every frame. His hands grip each tumbler with five fingers, knuckles wrapped around the rim.
+
+NOBODY ELSE IS IN THE FRAME: only the chai vendor. No passers-by, no customers, no vehicles.
+
+ASSETS: the chai vendor in the start frame = 52-year-old Tamil man, 170cm, lean and wiry, dark brown skin, thick salt-and-pepper moustache, short grey-streaked hair combed back, small scar on the left eyebrow. Off-white sleeveless cotton vest, faded red cotton towel over his right shoulder. THIS SCENE: pouring chai between two tumblers, calm, practised, proud. 100% match to the start frame.
+
+GEOMETRY MAP: vendor centre frame, waist-up, behind his stall counter. Raised tumbler upper frame, lower tumbler at chest height. Stall with kettle and gas burner mid-ground, wet street and streetlight blurred in the background.
+
+FIRST FRAME: open on the composition of the start frame exactly, the stream already flowing. No static hold.
+
+LENS: 63 degrees (35mm), slightly low angle. No focal drift.
+
+CAMERA: locked-off with an extremely slow push-in of about 10cm across the whole shot. No shake, no orbit.
+
+LIGHT & COLOUR: warm amber key from the bare bulb under the stall roof, camera-left and above, wrapping his face and catching the steam; cool blue dawn counter-light from behind rimming his shoulders. Colour: 70% cool blue-grey street and sky, 20% warm amber from the bulb and chai, 10% red from the towel.
+
+ATMOSPHERE: clean air. Steam rises only from the chai stream and the lower tumbler, thin and drifting upward, dissolving within 20cm. Fine rain falls in the background only.
+
+ACTION TIMING:
+0.0–3.0s: he raises the upper tumbler slowly from shoulder height to just above his head, the stream lengthening to about 60cm, eyes on the lower tumbler.
+3.0–5.0s: he lowers the upper tumbler smoothly toward the lower one, the stream shortening, and ends with both tumblers close together at chest height, a small satisfied smile. Towel and vest fabric shift slightly with his arm.
+
+PHYSICS: real gravity on the liquid, a smooth curved arc, the lower tumbler taking the weight of the pour, a thin froth forming at its rim. Nothing floats, nothing slides.
+
+ACTING: natural blinking, focused brow, faint smile at the end. He never looks into the lens.
+
+AUDIO: diegetic only — the steady pour of liquid into steel, soft rain on the tarpaulin roof, a low hiss from the gas burner. No speech. No music, no score, no humming, no ambient pad, no voices.
+
+LOCKS: one continuous pour from start to end. Same face, same moustache, same vest and towel throughout. Light direction and colour temperature constant. No text anywhere.
