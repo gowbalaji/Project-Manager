@@ -90,7 +90,7 @@ Look at every result before the next spend. If you cannot open the image or vide
 - **Pass** → move the shot to final.
 - **Fail** → go to *Fixing a failed clip* below. Do not re-roll the same prompt.
 
-On Magnific, `video_analyze` is free — use it to check continuity, count people, spot artefacts and compare two clips.
+On Magnific, `video_analyze` is free — ask it a numbered PASS/FAIL checklist built from the shot's CRITICAL blocks and ACTION TIMING, and have it quote exactly what is spoken. Treat its answers as leads, not verdicts: it can misread speech as burned-in captions. When it flags a failure that would cost a redraft, have the user confirm on the clip first.
 
 ### 7. FINAL (expensive)
 
@@ -130,6 +130,8 @@ If a file system is available, append it to `creative-director-log.md` in the us
 - [ ] **No on-screen text** block present unless text is wanted.
 - [ ] **Visible, not abstract:** no mood words without a physical description ("tense" → "jaw locked, shoulders raised").
 - [ ] **Directions are labelled** screen-left/right or character's own left/right.
+- [ ] **No self-contradiction:** CRITICAL blocks and ACTION TIMING agree (e.g. "pour lasts the whole shot" vs "tumblers meet at the end"). The model resolves conflicts its own way.
+- [ ] **No audible cues near dialogue** (breath, sigh, exhale) unless you want them heard.
 - [ ] **Resolution matches the stage:** draft settings for drafts, final settings only for approved shots.
 - [ ] **Cost checked** and shown.
 
@@ -146,7 +148,8 @@ Name the failure first, then change the one thing that causes it. A retry with t
 | Wrong action / nothing happens | Too many actions; abstract verbs | One action, timecoded; physical verbs with speed/distance |
 | Morphing, melting, flicker | Too long for the action; too much motion | Shorter duration; slower camera; split the shot |
 | Hands/fingers wrong | Hands doing fine work in wide shot | Hide or simplify hands; closer framing if they matter |
-| Text / subtitles appear | Speech or social-video look pulls captions | Add the full no-on-screen-text block |
+| Text / subtitles appear | Speech pulls captions from social-video training — happens even with a no-text block | First have the user confirm on the clip (analysis models can mistake speech for captions). If real: strengthen the block ("the line is heard only, never written"; name the bottom third of the frame as clean) and redraft |
+| Sigh, "ah" or hum before a line | Prompt asked for an audible breath or exhale near the line | Remove breath/exhale cues around dialogue; state "no vocal sounds before the line" in THE SCRIPT |
 | Wrong words spoken / invented lines | Dialogue not verbatim or too long | Quote exact lines, fewer words, name the speaker per line |
 | Background music when none wanted | Default audio | Platform's no-music flag (Magnific `noMusic`) + say "no music" |
 | Camera does something else | Conflicting camera words | One camera register; platform camera-motion preset if available |
