@@ -13,6 +13,7 @@ Prices below were read from Magnific's own `simulate_cost` in September 2026. Tr
 | Stills | `images_generate` (`count` 1–8 for variants of one prompt) | paid |
 | Video | `video_generate` | paid |
 | Show results | `creations_show` then `creations_wait` | free |
+| Confirm a result | `creations_get` — `creations_wait` can report a finished creation with empty results; check with `creations_get` before assuming it failed, and never regenerate on that signal alone | free |
 | Review | `video_analyze` (questions, artefacts, continuity, compare up to 10 clips) | free |
 | Continuity | `video_extract_frames` with `"last"` → next shot's `keyframes.start` | free |
 | Join | `video_concatenate` (2–10 clips, in order) | check |

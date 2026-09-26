@@ -85,7 +85,7 @@ Before every generation:
 
 ### 6. REVIEW (free)
 
-Look at every result before the next spend. Check against the shot's intent: identity, staging, action, camera, text-free frame, audio, artefacts (hands, morphing, flicker).
+Look at every result before the next spend. If you cannot open the image or video yourself (some environments block the media CDN), say so and have the user review it from the link — never approve a result you have not seen. Check against the shot's intent: identity, staging, action, camera, text-free frame, audio, artefacts (hands, morphing, flicker).
 
 - **Pass** → move the shot to final.
 - **Fail** → go to *Fixing a failed clip* below. Do not re-roll the same prompt.
