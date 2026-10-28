@@ -51,6 +51,7 @@ async function squigglePng(color) {
 }
 
 // ---------- helpers ----------
+const ph = { color: HEX.orangeDeep, italic: true, fill: { color: HEX.orangeLight } };
 const FOOT = "Branding Team  ·  JAS 2026 Review & OND Plan";
 
 function card(slide, x, y, w, h, opts = {}) {
@@ -183,6 +184,34 @@ function chip(slide, x, y, w, text, fill, color) {
   ], { x: 7.05, y: 5.05, w: 5.4, h: 1.5, fontSize: 14, color: S.dark, paraSpaceAfter: 6, margin: 0, valign: "top", isTextBox: true });
   s.addNotes("~60 sec. Lead with the headline KPI score (fill the orange box). Then: 1,109 creatives, 104 of them new concepts. 81% of output (899 units) went to the 6 retainers: TMB, Star Health, VGN, TVS Credit, Maxivision, Athmalaya. Name the watch-outs yourself before anyone else does.");
 
+  // ================= 2b. FEB ROADMAP CHECK =================
+  s = pres.addSlide({ masterName: "TITLE_ONLY", sectionTitle: "JAS review" });
+  s.addText("Feb roadmap check: volume beat it, new lines lag", { placeholder: "title" });
+  const bh = { bold: true, color: S.white, fill: { color: S.green } };
+  const okS = { fill: { color: HEX.greenLight }, color: S.green, bold: true, align: "center" };
+  const midS = { fill: { color: HEX.yellowLight }, color: HEX.orangeDeep, bold: true, align: "center" };
+  const badS = { fill: { color: HEX.redLight }, color: S.red, bold: true, align: "center" };
+  const phS = { ...ph, align: "center" };
+  const rm = (what, promised, actual, st, stStyle, actualStyle) => [
+    { text: what, options: { bold: true } }, { text: promised }, { text: actual, options: actualStyle || {} }, { text: st, options: stStyle },
+  ];
+  s.addTable([
+    [{ text: "Roadmap line (26 Feb 2026)", options: bh }, { text: "What we said", options: bh }, { text: "JAS reality", options: bh }, { text: "Status", options: { ...bh, align: "center" } }],
+    rm("Creative volume", "200–250 creatives / month", "~370 / month (1,109 in 3 months)", "Beat", okS),
+    rm("Individual projects", "4–5 per month", "~2.7 per month (8 in JAS)", "Below", midS),
+    rm("AI TVC / YouTube ads", "R&D and trial run before pitching", "3 TVC ads for TVS Green", "Delivered", okS),
+    rm("Upsell: Star Health ads, TMB YouTube", "Quarterly ads / YouTube campaigns", "[add: pitched? converted?]", "[add]", phS, ph),
+    rm("New retainers", "+2 Type 1, +2 Type 2", "VGN Homes added  ·  [confirm: KIMS status]", "Partial", midS),
+    rm("Gen-AI photography", "Food, fashion, industrial shoots", "[add: any paid jobs?]", "[add]", phS, ph),
+    rm("Annual reports / white papers", "New high-value category", "None in the JAS tracker", "Not started", badS),
+    rm("Resources requested", "2 designers, 1 video, AI tools", "[add: approved / pending]", "[add]", phS, ph),
+  ], {
+    x: 0.6, y: 1.45, w: 12.1, colW: [3.2, 3.3, 4.0, 1.6], rowH: 0.56,
+    fontSize: 13, color: S.dark, fill: { color: S.white }, valign: "middle",
+    border: { type: "solid", pt: 1, color: HEX.cream }, margin: 0.08,
+  });
+  s.addNotes("~60 sec. Leadership saw the Feb roadmap ('Scaling the Right Way'), so they will judge JAS against it. Say it before they do. Volume: the Feb deck said 200–250/month and 'close to optimal capacity'; JAS ran at ~370/month with the same 4 people. If the resource ask is still pending, that is your argument for it. KIMS was a Type 2 retainer in Feb and is not in the current retainer list, so confirm whether it was lost and be ready to say why. Annual reports / white papers had no movement: say whether it's parked or planned for OND.");
+
   // ================= 3. TVS SPOTLIGHT =================
   s = pres.addSlide({ masterName: "TITLE_ONLY", sectionTitle: "JAS review" });
   s.addText("TVS ads: committed last quarter, delivered this quarter", { placeholder: "title" });
@@ -202,7 +231,7 @@ function chip(slide, x, y, w, text, fill, color) {
   s.addText([
     { text: "Scope: ", options: { bold: true } }, { text: "3 TVC commercial ads for TVS Green", options: { breakLine: true } },
     { text: "Team: ", options: { bold: true } }, { text: "Gowtham (5 master concepts), Naresh (7 creatives)", options: { breakLine: true } },
-    { text: "Why it matters: ", options: { bold: true } }, { text: "we kept a commitment that carried across quarters, and it proves we can deliver video. That is the base for OND's push into real-estate AI videos." },
+    { text: "Why it matters: ", options: { bold: true } }, { text: "first delivery against the Feb roadmap's TVC / YouTube ads line. We kept a commitment across quarters, and it is the base for OND's real-estate AI videos." },
   ], { x: 0.9, y: 4.4, w: 6.6, h: 2.1, fontSize: 15, color: S.dark, paraSpaceAfter: 8, margin: 0, valign: "top", isTextBox: true });
   placeholderBox(s, 8.2, 1.5, 4.5, 5.2, "2–3 stills or a 10-sec clip from the TVS ads, plus one line of client feedback (quote or approval email).", 16);
   s.addNotes("~75 sec. This is the story to land. 'This was promised last quarter. We carried it over and delivered it this quarter.' Show the stills or clip. CHECK BEFORE PRESENTING: the project tracker still lists TVS Green 'TVC Commercial Ads - 3' as Oct / In-progress. Update the tracker to Completed or someone will catch the mismatch.");
@@ -224,7 +253,6 @@ function chip(slide, x, y, w, text, fill, color) {
     valAxisHidden: true, valGridLine: { style: "none" }, catGridLine: { style: "none" },
     valAxisMaxVal: 5,
   });
-  const ph = { color: HEX.orangeDeep, italic: true, fill: { color: HEX.orangeLight } };
   const hd = { bold: true, color: S.white, fill: { color: S.green } };
   s.addTable([
     [{ text: "Creatives", options: hd }, { text: "July", options: hd }, { text: "August", options: hd }, { text: "September", options: hd }],
