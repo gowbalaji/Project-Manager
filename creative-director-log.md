@@ -24,3 +24,13 @@ Rules learned for next time:
 - Check eyelines and directions on the first-frame stills — fixing them there costs 100 credits, not 1,000+.
 - Build the review checklist from the prompt's own CRITICAL blocks and timing; ask the analysis tool to quote speech.
 - Reconcile balance after every paid stage.
+
+## Diwali wish "The Big One" — 2026-11-07
+Platform: none (hand-built 2D vector: SVG + Playwright + numpy audio + ffmpeg) | Credits spent: 0
+
+Output: 23s 9:16 MP4, 4 beats + end card, one continuous locked side view. Reference clip (Lenora 3D Shop) used for format only; characters, gag and payoff are original.
+
+Rules learned for next time:
+- For simple flat-cartoon gags, offer code-built vector animation alongside AI generation: zero credits, no identity drift, exact timing, and text is crisp because it's rendered rather than generated.
+- Check composition on a stills contact sheet before rendering every frame: the first layout had characters too small for a phone screen.
+- Normalize loudness (-14 LUFS) for social video; quiet setup sections otherwise sit around -22 dB.

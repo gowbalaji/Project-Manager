@@ -1,0 +1,554 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Diwali Wish</title>
+<!--
+  "The Big One": a 2D vector Diwali wish. 1080x1920, 23 seconds.
+  Rendering is deterministic: window.setTime(t) draws the frame at t seconds.
+  Open in a browser to preview (plays in real time); render.js captures frames.
+  Change the sender line with ?name=Your%20Name in the URL.
+-->
+<style>
+  @font-face { font-family: 'Baloo'; src: url('fonts/Baloo2-ExtraBold.ttf'); font-weight: 800; }
+  html, body { margin: 0; height: 100%; background: #FDF6E3; overflow: hidden; }
+  svg { display: block; width: 100vw; height: 100vh; }
+  .ol { stroke: #3B2416; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+</style>
+</head>
+<body>
+<svg id="stage" viewBox="0 0 1080 1920" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#FFD66B" stop-opacity="0.85"/>
+      <stop offset="0.45" stop-color="#FFB13B" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#FFB13B" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="flash">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/>
+      <stop offset="0.35" stop-color="#FFE08A" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFB13B" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="crk" x1="0" x2="1">
+      <stop offset="0" stop-color="#B3201A"/>
+      <stop offset="0.35" stop-color="#E8392B"/>
+      <stop offset="1" stop-color="#9E1A14"/>
+    </linearGradient>
+    <linearGradient id="clay" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#C8643A"/>
+      <stop offset="1" stop-color="#94401F"/>
+    </linearGradient>
+    <radialGradient id="warm" cx="0.5" cy="0.62" r="0.7">
+      <stop offset="0" stop-color="#FFC56B" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FFC56B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1080" height="1920" fill="#FDF6E3"/>
+  <rect id="warmth" width="1080" height="1920" fill="url(#warm)" opacity="0"/>
+
+  <!-- marigold toran across the top -->
+  <g id="toran"></g>
+  <!-- rangoli corners -->
+  <g id="rangoli" opacity="0.55"></g>
+
+  <!-- ground line -->
+  <path d="M70,1150 Q300,1146 540,1151 T1010,1149" fill="none" stroke="#5B4636" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- burst fx sits behind characters -->
+  <g id="sky"></g>
+
+  <g id="actors" transform="translate(540,1150) scale(1.25) translate(-540,-1150)">
+  <!-- the cracker -->
+  <g id="cracker">
+    <g id="crackerFlame" opacity="0">
+      <path id="flameOuter" d="M-26,0 Q-18,60 0,120 Q18,60 26,0 Z" fill="#FF8A1F"/>
+      <path id="flameInner" d="M-14,0 Q-8,40 0,80 Q8,40 14,0 Z" fill="#FFE27A"/>
+    </g>
+    <g id="crackerBody">
+      <path id="fuse" d="M0,-130 C-2,-150 -20,-152 -34,-162" fill="none" stroke="#6E5B3E" stroke-width="5" stroke-linecap="round"/>
+      <rect x="-35" y="-130" width="70" height="130" rx="9" fill="url(#crk)" class="ol"/>
+      <rect x="-35" y="-118" width="70" height="11" fill="#F2B632"/>
+      <rect x="-35" y="-24" width="70" height="11" fill="#F2B632"/>
+      <circle cx="0" cy="-66" r="17" fill="#F2B632" stroke="#7A2A12" stroke-width="3"/>
+      <circle cx="0" cy="-66" r="7" fill="#E8392B"/>
+      <rect x="-35" y="-130" width="70" height="130" rx="9" fill="none" class="ol"/>
+      <ellipse cx="0" cy="-130" rx="33" ry="6" fill="#7A1510" class="ol" stroke-width="3"/>
+    </g>
+    <g id="fuseSpark"></g>
+  </g>
+
+  <!-- puppy (faces screen-left by default) -->
+  <g id="puppy">
+    <g id="pupBody">
+      <g id="pupTail"><path d="M52,-62 Q84,-80 76,-110" fill="none" stroke="#3B2416" stroke-width="16" stroke-linecap="round"/><path d="M52,-62 Q84,-80 76,-110" fill="none" stroke="#D9A066" stroke-width="9" stroke-linecap="round"/></g>
+      <g id="pupLegB"><rect x="20" y="-40" width="14" height="40" rx="6" fill="#C98E55" class="ol"/><rect x="36" y="-40" width="14" height="40" rx="6" fill="#D9A066" class="ol"/></g>
+      <g id="pupLegF"><rect x="-44" y="-40" width="14" height="40" rx="6" fill="#C98E55" class="ol"/><rect x="-28" y="-40" width="14" height="40" rx="6" fill="#D9A066" class="ol"/></g>
+      <ellipse cx="2" cy="-58" rx="62" ry="33" fill="#D9A066" class="ol"/>
+      <ellipse cx="-4" cy="-44" rx="34" ry="14" fill="#F1D3A6"/>
+      <g id="pupHead">
+        <path d="M-58,-145 L-74,-170 L-46,-150 Z" fill="#A86B3C" class="ol"/>
+        <circle cx="-56" cy="-112" r="38" fill="#D9A066" class="ol"/>
+        <ellipse cx="-88" cy="-100" rx="22" ry="15" fill="#F1D3A6" class="ol"/>
+        <ellipse cx="-106" cy="-104" rx="8" ry="6" fill="#2A1A10"/>
+        <path d="M-96,-90 Q-90,-84 -82,-90" fill="none" class="ol" stroke-width="3"/>
+        <circle cx="-64" cy="-120" r="6.5" fill="#2A1A10"/>
+        <circle cx="-66" cy="-122" r="2.2" fill="#fff"/>
+        <path id="pupEar" d="M-34,-140 Q-14,-128 -22,-96 Q-30,-104 -40,-126 Z" fill="#A86B3C" class="ol"/>
+        <path d="M-50,-78 Q-36,-74 -24,-82" fill="none" stroke="#D2342A" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="-38" cy="-72" r="5" fill="#F2B632" stroke="#7A4A12" stroke-width="2"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- little sister -->
+  <g id="sister">
+    <g id="sisLower">
+      <ellipse cx="-14" cy="-5" rx="13" ry="7" fill="#C98A5A" class="ol" stroke-width="3"/>
+      <ellipse cx="14" cy="-5" rx="13" ry="7" fill="#C98A5A" class="ol" stroke-width="3"/>
+      <path d="M-34,-122 L34,-122 L58,-10 Q0,0 -58,-10 Z" fill="#E8558A" class="ol"/>
+      <path d="M-55,-24 Q0,-15 55,-24 L57,-12 Q0,-3 -57,-12 Z" fill="#F2B632"/>
+      <path d="M-16,-118 L-24,-14 M16,-118 L24,-14" stroke="#F2B632" stroke-width="3" opacity="0.7"/>
+    </g>
+    <g id="sisUpper">
+      <g id="sisArmL"><rect x="-50" y="-166" width="20" height="56" rx="10" fill="#C98A5A" class="ol"/><circle cx="-40" cy="-162" r="13" fill="#2E9E6E" class="ol"/><circle cx="-40" cy="-108" r="10" fill="#C98A5A" class="ol" stroke-width="3"/></g>
+      <g id="sisArmR"><rect x="30" y="-166" width="20" height="56" rx="10" fill="#C98A5A" class="ol"/><circle cx="40" cy="-162" r="13" fill="#2E9E6E" class="ol"/><circle cx="40" cy="-108" r="10" fill="#C98A5A" class="ol" stroke-width="3"/></g>
+      <path d="M-36,-170 Q0,-178 36,-170 L36,-120 L-36,-120 Z" fill="#2E9E6E" class="ol"/>
+      <path d="M-36,-128 L36,-128" stroke="#F2B632" stroke-width="5"/>
+      <g id="sisHead">
+        <circle cx="-62" cy="-214" r="20" fill="#2A1A10"/>
+        <circle cx="62" cy="-214" r="20" fill="#2A1A10"/>
+        <circle cx="-70" cy="-224" r="5" fill="#fff"/><circle cx="-58" cy="-230" r="5" fill="#fff"/><circle cx="-74" cy="-212" r="5" fill="#fff"/>
+        <circle cx="70" cy="-224" r="5" fill="#fff"/><circle cx="58" cy="-230" r="5" fill="#fff"/><circle cx="74" cy="-212" r="5" fill="#fff"/>
+        <circle cx="0" cy="-222" r="60" fill="#C98A5A" class="ol"/>
+        <path d="M-60,-224 Q-62,-292 0,-290 Q62,-292 60,-224 Q48,-262 18,-262 Q0,-246 -18,-262 Q-48,-262 -60,-224 Z" fill="#2A1A10"/>
+        <circle cx="0" cy="-246" r="4.5" fill="#D2342A"/>
+        <ellipse cx="-21" cy="-218" rx="12" ry="14" fill="#fff" class="ol" stroke-width="3"/>
+        <ellipse cx="21" cy="-218" rx="12" ry="14" fill="#fff" class="ol" stroke-width="3"/>
+        <g id="sisPupils"><circle cx="-21" cy="-216" r="7" fill="#2A1A10"/><circle cx="21" cy="-216" r="7" fill="#2A1A10"/><circle cx="-23" cy="-219" r="2" fill="#fff"/><circle cx="19" cy="-219" r="2" fill="#fff"/></g>
+        <rect id="sisLidL" x="-35" y="-233" width="28" height="0" fill="#C98A5A"/>
+        <rect id="sisLidR" x="7" y="-233" width="28" height="0" fill="#C98A5A"/>
+        <circle cx="-38" cy="-196" r="9" fill="#F28B8B" opacity="0.45"/>
+        <circle cx="38" cy="-196" r="9" fill="#F28B8B" opacity="0.45"/>
+        <path id="sisMouth" d="" class="ol" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- the boy -->
+  <g id="boy">
+    <g id="boyLegL"><rect x="-26" y="-74" width="23" height="68" rx="10" fill="#FFFFFF" class="ol"/><ellipse cx="-16" cy="-5" rx="16" ry="8" fill="#B87A4B" class="ol" stroke-width="3"/></g>
+    <g id="boyLegR"><rect x="3" y="-74" width="23" height="68" rx="10" fill="#FFFFFF" class="ol"/><ellipse cx="16" cy="-5" rx="16" ry="8" fill="#B87A4B" class="ol" stroke-width="3"/></g>
+    <g id="boyUpper">
+      <g id="boyArmR"><rect x="38" y="-174" width="24" height="62" rx="11" fill="#F28C28" class="ol"/><circle cx="50" cy="-104" r="12" fill="#B87A4B" class="ol" stroke-width="3"/></g>
+      <path d="M-48,-180 Q0,-190 48,-180 L60,-64 Q0,-54 -60,-64 Z" fill="#F28C28" class="ol"/>
+      <path d="M-58,-78 Q0,-68 58,-78 L60,-64 Q0,-54 -60,-64 Z" fill="#F2B632"/>
+      <path d="M0,-182 L0,-128" stroke="#C25E10" stroke-width="4"/>
+      <circle cx="0" cy="-166" r="3.5" fill="#F2B632"/><circle cx="0" cy="-151" r="3.5" fill="#F2B632"/><circle cx="0" cy="-136" r="3.5" fill="#F2B632"/>
+      <g id="boyArmL">
+        <g id="sparkler" opacity="0">
+          <line x1="-48" y1="-104" x2="-48" y2="-40" stroke="#8C8C8C" stroke-width="4" stroke-linecap="round"/>
+          <g id="sparkTip" transform="translate(-48,-44)"></g>
+        </g>
+        <rect x="-62" y="-174" width="24" height="62" rx="11" fill="#F28C28" class="ol"/><circle cx="-50" cy="-104" r="12" fill="#B87A4B" class="ol" stroke-width="3"/>
+      </g>
+      <g id="boyHead">
+        <circle cx="-70" cy="-246" r="14" fill="#B87A4B" class="ol" stroke-width="3"/>
+        <circle cx="70" cy="-246" r="14" fill="#B87A4B" class="ol" stroke-width="3"/>
+        <circle cx="0" cy="-250" r="72" fill="#B87A4B" class="ol"/>
+        <g fill="#2A1A10">
+          <circle cx="-58" cy="-292" r="28"/><circle cx="-28" cy="-316" r="30"/><circle cx="6" cy="-324" r="30"/>
+          <circle cx="40" cy="-312" r="28"/><circle cx="64" cy="-286" r="24"/><circle cx="-72" cy="-266" r="17"/>
+          <circle cx="74" cy="-262" r="15"/><circle cx="-30" cy="-292" r="18"/><circle cx="18" cy="-296" r="18"/>
+        </g>
+        <ellipse cx="-26" cy="-246" rx="14" ry="17" fill="#fff" class="ol" stroke-width="3"/>
+        <ellipse cx="26" cy="-246" rx="14" ry="17" fill="#fff" class="ol" stroke-width="3"/>
+        <g id="boyPupils"><circle cx="-26" cy="-244" r="8" fill="#2A1A10"/><circle cx="26" cy="-244" r="8" fill="#2A1A10"/><circle cx="-28" cy="-247" r="2.4" fill="#fff"/><circle cx="24" cy="-247" r="2.4" fill="#fff"/></g>
+        <rect id="boyLidL" x="-42" y="-264" width="32" height="0" fill="#B87A4B"/>
+        <rect id="boyLidR" x="10" y="-264" width="32" height="0" fill="#B87A4B"/>
+        <path d="M-38,-272 Q-26,-279 -14,-273 M14,-273 Q26,-279 38,-272" fill="none" class="ol" stroke-width="4" id="boyBrows"/>
+        <path d="M-4,-230 Q0,-224 4,-230" fill="none" class="ol" stroke-width="3"/>
+        <circle cx="-46" cy="-222" r="10" fill="#E07A6A" opacity="0.35"/>
+        <circle cx="46" cy="-222" r="10" fill="#E07A6A" opacity="0.35"/>
+        <path id="boyMouth" d="" class="ol" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- question mark over the boy -->
+  <text id="qmark" x="0" y="0" font-family="Baloo" font-weight="800" font-size="90" fill="#5B4636" opacity="0" text-anchor="middle">?</text>
+
+  <g id="puff"></g>
+  </g>
+  <!-- diyas, petals in the foreground -->
+  <g id="diyas"></g>
+  <g id="petals"></g>
+
+  <!-- the wish -->
+  <g id="endcard" opacity="0">
+    <text id="wish" x="540" y="1500" text-anchor="middle" font-family="Baloo" font-weight="800" font-size="148"
+          fill="#E8731A" stroke="#7A2E0A" stroke-width="10" paint-order="stroke" stroke-linejoin="round">Happy Diwali</text>
+    <g id="wishStars"></g>
+  </g>
+  <text id="sender" x="540" y="1600" text-anchor="middle" font-family="Baloo" font-weight="800" font-size="56" fill="#6B3A1F" opacity="0"></text>
+</svg>
+
+<script>
+(() => {
+  const NS = 'http://www.w3.org/2000/svg';
+  const $ = id => document.getElementById(id);
+  const mk = (tag, attrs, parent) => { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; };
+  const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+  const seg = (t, a, b) => clamp((t - a) / (b - a));
+  const lerp = (a, b, p) => a + (b - a) * p;
+  const eio = p => p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+  const eout = p => 1 - Math.pow(1 - p, 3);
+  const ein = p => p * p * p;
+  const back = p => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+  const rnd = i => { const x = Math.sin(i * 127.1 + 311.7) * 43758.5453; return x - Math.floor(x); };
+  // keyframe track: [[t, v], ...], eased in-out between keys
+  const track = (t, keys, ease = eio) => {
+    if (t <= keys[0][0]) return keys[0][1];
+    for (let i = 1; i < keys.length; i++) {
+      if (t <= keys[i][0]) { const [t0, v0] = keys[i - 1], [t1, v1] = keys[i]; return lerp(v0, v1, ease((t - t0) / (t1 - t0))); }
+    }
+    return keys[keys.length - 1][1];
+  };
+  const inRange = (t, a, b) => t >= a && t < b;
+  const set = (el, k, v) => el.setAttribute(k, v);
+
+  const G = 1150, CRX = 290, DURATION = 23, K = 1.25;
+  const LY = G + (470 - G) / K; // launch apex in actor space = world y 470
+  const world = (x, y) => [540 + (x - 540) * K, G + (y - G) * K];
+  const params = new URLSearchParams(location.search);
+  $('sender').textContent = params.get('name') || 'From our family to yours';
+
+  // ---------- static decor ----------
+  const toran = $('toran');
+  for (let i = 0; i <= 26; i++) {
+    const x = i * 1080 / 26, y = 110 + 70 * Math.sin(Math.PI * i / 26) - 22 * Math.sin(Math.PI * i / 13) ** 2;
+    if (i % 3 === 1) mk('path', { d: `M${x},${y + 10} Q${x - 14},${y + 48} ${x},${y + 72} Q${x + 14},${y + 48} ${x},${y + 10} Z`, fill: '#5E9E3A', stroke: '#2F5A1C', 'stroke-width': 3 }, toran);
+    mk('circle', { cx: x, cy: y, r: 20, fill: i % 2 ? '#F7B422' : '#F07F1A', stroke: '#9A4A0A', 'stroke-width': 3 }, toran);
+    mk('circle', { cx: x - 5, cy: y - 5, r: 6, fill: '#FFE08A', opacity: 0.8 }, toran);
+  }
+  const rang = $('rangoli');
+  const motif = (cx, cy, s) => {
+    for (let k = 0; k < 8; k++) {
+      const a = k * Math.PI / 4;
+      mk('ellipse', { cx: cx + Math.cos(a) * 34 * s, cy: cy + Math.sin(a) * 34 * s, rx: 18 * s, ry: 9 * s, transform: `rotate(${a * 180 / Math.PI} ${cx + Math.cos(a) * 34 * s} ${cy + Math.sin(a) * 34 * s})`, fill: k % 2 ? '#E8558A' : '#F07F1A' }, rang);
+      mk('circle', { cx: cx + Math.cos(a + Math.PI / 8) * 62 * s, cy: cy + Math.sin(a + Math.PI / 8) * 62 * s, r: 5 * s, fill: '#2E9E6E' }, rang);
+    }
+    mk('circle', { cx, cy, r: 14 * s, fill: '#F7B422' }, rang);
+  };
+  motif(110, 1800, 1); motif(970, 1800, 1); motif(60, 1680, 0.55); motif(1020, 1680, 0.55);
+
+  // ---------- diyas ----------
+  const DIYA_X = [130, 265, 400, 540, 680, 815, 950], DIYA_Y = 1262;
+  const diyas = DIYA_X.map((x, i) => {
+    const g = mk('g', { transform: `translate(${x},${DIYA_Y})` }, $('diyas'));
+    const glow = mk('circle', { cx: 0, cy: -30, r: 90, fill: 'url(#glow)', opacity: 0 }, g);
+    const flame = mk('g', { opacity: 0 }, g);
+    const fo = mk('path', { d: 'M0,-58 Q-14,-30 0,-16 Q14,-30 0,-58 Z', fill: '#FF9A1F' }, flame);
+    mk('path', { d: 'M0,-44 Q-7,-28 0,-19 Q7,-28 0,-44 Z', fill: '#FFF2A8' }, flame);
+    mk('path', { d: 'M-46,-18 Q0,-12 46,-18 Q40,22 0,24 Q-40,22 -46,-18 Z', fill: 'url(#clay)', class: 'ol' }, g);
+    for (let k = -2; k <= 2; k++) mk('circle', { cx: k * 15, cy: 2, r: 3.5, fill: '#F2B632' }, g);
+    mk('ellipse', { cx: 0, cy: -18, rx: 46, ry: 7, fill: '#6B2E14', class: 'ol', 'stroke-width': 3 }, g);
+    return { glow, flame, fo };
+  });
+
+  // ---------- particle pools ----------
+  const sparkTip = $('sparkTip'), fuseSpark = $('fuseSpark'), sky = $('sky'), puff = $('puff'), petalsG = $('petals');
+  const pool = (n, parent, tag, attrs) => Array.from({ length: n }, () => mk(tag, attrs, parent));
+  const tipLines = pool(14, sparkTip, 'line', { stroke: '#FFD23F', 'stroke-width': 3, 'stroke-linecap': 'round' });
+  const fuseLines = pool(12, fuseSpark, 'line', { stroke: '#FFC93C', 'stroke-width': 3, 'stroke-linecap': 'round' });
+  const fuseCore = mk('circle', { r: 7, fill: '#FFF3B0' }, fuseSpark);
+  const flash = mk('circle', { r: 0, fill: 'url(#flash)', opacity: 0 }, sky);
+  const BURSTS = [
+    { t: 16.5, x: 540, y: 470, n: 70, speed: [420, 640], cols: ['#FFD23F', '#FFB13B', '#FFF6C9', '#FF8A1F'] },
+    { t: 16.85, x: 370, y: 560, n: 40, speed: [260, 420], cols: ['#FF5C8A', '#FFD23F', '#7FE07A'] },
+    { t: 17.15, x: 720, y: 540, n: 40, speed: [260, 420], cols: ['#7FD1FF', '#FFD23F', '#FF8A1F'] },
+  ];
+  BURSTS.forEach(b => { b.lines = pool(b.n, sky, 'line', { 'stroke-width': 5, 'stroke-linecap': 'round' }); });
+  const trail = pool(10, sky, 'circle', { fill: '#CFC6B8' });
+  const puffs = pool(7, puff, 'circle', { fill: '#BDB5A8', stroke: '#8E8577', 'stroke-width': 3 });
+  const PETALS = 44;
+  const petals = Array.from({ length: PETALS }, (_, i) => mk('ellipse', { rx: 11, ry: 6, fill: i % 3 === 0 ? '#F7B422' : (i % 3 === 1 ? '#F07F1A' : '#FFD23F'), stroke: '#9A4A0A', 'stroke-width': 1.5 }, petalsG));
+  const stars = Array.from({ length: 6 }, (_, i) => mk('path', { d: 'M0,-18 L5,-5 L18,0 L5,5 L0,18 L-5,5 L-18,0 L-5,-5 Z', fill: '#F7B422' }, $('wishStars')));
+  const STAR_POS = [[110, 1440], [970, 1440], [70, 1530], [1010, 1530], [200, 1370], [880, 1370]];
+
+  const fuse = $('fuse'), FUSE_LEN = fuse.getTotalLength();
+
+  // ---------- mouths ----------
+  const MOUTH = {
+    smile: ['M{-16},{0} Q0,{14} {16},{0}', 'none'],
+    grin:  ['M{-20},{-2} Q0,{22} {20},{-2} Z', '#7A2A1A'],
+    O:     ['M{-8},{4} a8,10 0 1,0 16,0 a8,10 0 1,0 -16,0', '#7A2A1A'],
+    o:     ['M{-5},{4} a5,6 0 1,0 10,0 a5,6 0 1,0 -10,0', '#7A2A1A'],
+    flat:  ['M{-10},{4} L{10},{4}', 'none'],
+    sad:   ['M{-14},{10} Q0,{-2} {14},{10}', 'none'],
+    cheer: ['M{-24},{-4} Q0,{34} {24},{-4} Z', '#7A2A1A'],
+  };
+  const mouth = (el, kind, cy, s = 1) => {
+    const [tpl, fill] = MOUTH[kind];
+    set(el, 'd', tpl.replace(/\{(-?[\d.]+)\}/g, (_, n) => (+n) * s));
+    set(el, 'transform', `translate(0,${cy})`);
+    set(el, 'fill', fill);
+  };
+
+  function boyMouthFor(t) {
+    if (t < 2.25) return 'grin';
+    if (t < 4.6) return 'O';
+    if (t < 8.6) return 'grin';
+    if (t < 10.25) return 'flat';
+    if (t < 10.9) return 'O';
+    if (t < 16.45) return 'sad';
+    if (t < 16.95) return 'O';
+    return 'cheer';
+  }
+  function sisMouthFor(t) {
+    if (t < 2.4) return 'smile';
+    if (t < 8.6) return 'o';
+    if (t < 10.25) return 'flat';
+    if (t < 10.9) return 'O';
+    if (t < 16.45) return 'sad';
+    if (t < 16.95) return 'O';
+    return 'cheer';
+  }
+
+  // ---------- frame ----------
+  function setTime(t) {
+    // ===== boy =====
+    const bx = track(t, [[0, 420], [3.0, 420], [4.4, 650]]);
+    let lean = track(t, [[0, 0], [0.15, 0], [0.8, -16], [1.1, -16], [1.45, 0], [1.7, 0], [2.15, -12], [2.5, -12], [2.75, 5], [3.0, 0], [8.6, 0], [9.6, -9], [10.15, -9], [10.6, 0]]);
+    let crouch = track(t, [[0, 0], [0.15, 0], [0.8, 24], [1.1, 24], [1.45, 0], [4.3, 0], [4.9, 26], [10.4, 26], [11.3, 12], [16.5, 12], [16.9, 0]]);
+    let armL = track(t, [[0, 40], [0.8, 62], [1.1, 62], [1.45, 12], [1.7, 12], [2.15, 86], [2.5, 86], [2.85, 25], [3.0, 10], [4.4, 10], [4.9, 20], [10.4, 20], [11.2, 4]]);
+    let armR = track(t, [[0, 55], [0.8, 70], [1.1, 70], [1.45, -8], [4.4, -8], [4.9, -20], [10.4, -20], [11.2, -4]]);
+    let legL = 0, legR = 0, bob = 0, headTilt = track(t, [[10.6, 0], [11.4, 8], [16.4, 8], [16.8, 0]]);
+    if (inRange(t, 3.0, 4.4)) { const ph = Math.sin((t - 3.0) * Math.PI * 2 * 3.2); legL = ph * 34; legR = -ph * 34; armL = -ph * 40; armR = -ph * 40; bob = Math.abs(ph) * 14; lean = -0; }
+    if (t >= 0.15 && t < 1.45) { const c = crouch / 24; legL = 14 * c; legR = -14 * c; }
+    if (t >= 4.3 && t < 16.9) { const c = crouch / 26; legL = 18 * c; legR = -18 * c; }
+    let jump = 0;
+    if (t >= 16.95) {
+      const p = t - 16.95, env = t < 20.2 ? 1 : Math.max(0, 1 - (t - 20.2) / 0.8) * 0.5 + 0.15;
+      jump = Math.abs(Math.sin(p * Math.PI * 2.4)) * 70 * env;
+      armL = 150 + Math.sin(p * 14) * 18; armR = -150 - Math.sin(p * 14 + 1) * 18;
+      legL = jump > 10 ? -10 : 0; legR = jump > 10 ? 10 : 0;
+    }
+    set($('boy'), 'transform', `translate(${bx},${G - jump}) rotate(${lean})`);
+    set($('boyUpper'), 'transform', `translate(0,${crouch + bob * 0.3})`);
+    set($('boyLegL'), 'transform', `rotate(${legL} -14 -72)`);
+    set($('boyLegR'), 'transform', `rotate(${legR} 14 -72)`);
+    set($('boyArmL'), 'transform', `rotate(${armL} -50 -168)`);
+    set($('boyArmR'), 'transform', `rotate(${armR} 50 -168)`);
+    set($('boyHead'), 'transform', `rotate(${headTilt} 0 -180)`);
+    let bpx = -6, bpy = 0;
+    if (t >= 16.45 && t < 17.0) { bpx = 0; bpy = -7; }
+    if (t >= 17.0) { bpx = 0; bpy = -3; }
+    if (t >= 12.0 && t < 15.2) { bpx = -7; bpy = 4; }
+    set($('boyPupils'), 'transform', `translate(${bpx},${bpy})`);
+    const blid = (t >= 11.2 && t < 16.4 ? 8 : 0) + (blink(t, 0.3) * 30);
+    set($('boyLidL'), 'height', Math.min(34, blid)); set($('boyLidR'), 'height', Math.min(34, blid));
+    mouth($('boyMouth'), boyMouthFor(t), -212);
+    set($('boyBrows'), 'transform', `translate(0,${t >= 2.25 && t < 4.6 ? -6 : (t >= 11 && t < 16.4 ? 3 : 0)})`);
+
+    // sparkler in the boy's left hand, 1.2s - 3.0s
+    const sparkOn = t >= 1.25 && t < 3.0;
+    set($('sparkler'), 'opacity', sparkOn ? 1 : 0);
+    tipLines.forEach((l, i) => {
+      if (!sparkOn) { set(l, 'opacity', 0); return; }
+      const k = Math.floor(t * 30) * 31 + i;
+      const a = rnd(k) * Math.PI * 2, r1 = 4, r2 = 10 + rnd(k + 7) * 26;
+      set(l, 'x1', Math.cos(a) * r1); set(l, 'y1', Math.sin(a) * r1);
+      set(l, 'x2', Math.cos(a) * r2); set(l, 'y2', Math.sin(a) * r2);
+      set(l, 'stroke', rnd(k + 3) > 0.5 ? '#FFD23F' : '#FFF6C9'); set(l, 'opacity', 0.6 + rnd(k + 5) * 0.4);
+    });
+
+    // ===== little sister =====
+    const sx = 770;
+    const sLean = track(t, [[8.6, 0], [9.6, -7], [10.15, -7], [10.6, 0]]);
+    const sCrouch = track(t, [[2.4, 0], [2.9, 12], [10.6, 12], [11.3, 6], [16.5, 6], [16.9, 0]]);
+    let sArmL = track(t, [[0, 6], [2.35, 6], [2.8, 158], [10.7, 158], [11.3, 8]]);
+    let sArmR = track(t, [[0, -6], [2.35, -6], [2.8, -158], [10.7, -158], [11.3, -8]]);
+    let sJump = 0, sTilt = track(t, [[10.6, 0], [11.4, -8], [16.4, -8], [16.8, 0]]);
+    if (t >= 17.05) {
+      const p = t - 17.05, env = t < 20.2 ? 1 : Math.max(0, 1 - (t - 20.2) / 0.8) * 0.5 + 0.15;
+      sJump = Math.abs(Math.sin(p * Math.PI * 2.4 + 0.9)) * 52 * env;
+      sArmL = 140 + Math.sin(p * 13) * 20; sArmR = -140 - Math.sin(p * 13 + 2) * 20;
+    }
+    set($('sister'), 'transform', `translate(${sx},${G - sJump}) rotate(${sLean})`);
+    set($('sisUpper'), 'transform', `translate(0,${sCrouch})`);
+    set($('sisLower'), 'transform', `translate(0,${sCrouch * 0.4}) scale(1,${1 - sCrouch * 0.004})`);
+    set($('sisArmL'), 'transform', `rotate(${sArmL} -40 -160)`);
+    set($('sisArmR'), 'transform', `rotate(${sArmR} 40 -160)`);
+    set($('sisHead'), 'transform', `rotate(${sTilt} 0 -160)`);
+    let spx = -5, spy = 0;
+    if (t >= 16.45 && t < 17.0) { spx = 0; spy = -6; }
+    if (t >= 17.0) { spx = 0; spy = -2; }
+    if (t >= 12.0 && t < 15.2) { spx = -6; spy = 4; }
+    set($('sisPupils'), 'transform', `translate(${spx},${spy})`);
+    const scared = t >= 2.6 && t < 8.6 ? 9 : 0;
+    const slid = (t >= 11.2 && t < 16.4 ? 7 : scared) + blink(t, 1.1) * 30;
+    set($('sisLidL'), 'height', Math.min(30, slid)); set($('sisLidR'), 'height', Math.min(30, slid));
+    mouth($('sisMouth'), sisMouthFor(t), -188, 0.85);
+
+    // ===== puppy =====
+    let px = track(t, [[0, 880], [2.4, 880], [3.4, 845], [9.2, 845], [9.55, 812], [10.2, 812], [10.6, 845], [12.0, 845], [13.8, 520], [15.15, 520], [15.65, 640]]);
+    let py = 0, pFlip = 1, pHead = 0, pTail = Math.sin(t * 13) * 16, legPh = 0;
+    if (t < 2.4) pTail = Math.sin(t * 16) * 20;
+    if (inRange(t, 2.4, 10.6)) pTail = 30 + Math.sin(t * 6) * 4;
+    if (inRange(t, 10.9, 12.0)) pTail = 40;
+    if (inRange(t, 2.4, 3.4) || inRange(t, 12.0, 13.8)) { legPh = Math.sin(t * 22) * 16; py = Math.abs(Math.sin(t * 22)) * 6; }
+    if (inRange(t, 13.8, 15.15)) { pHead = 14 + Math.sin((t - 13.8) * 18) * 6; pTail = Math.sin(t * 18) * 22; }
+    if (inRange(t, 15.15, 15.65)) { const p = seg(t, 15.15, 15.65); py = Math.sin(p * Math.PI) * 80; pHead = -10; pTail = 35; }
+    if (t >= 17.0) {
+      const p = t - 17.0, env = t < 20.2 ? 1 : 0.35;
+      py = Math.abs(Math.sin(p * Math.PI * 2.0)) * 34 * env;
+      pFlip = Math.cos(p * Math.PI * 2 * 0.9) || 0.01;
+      pTail = Math.sin(t * 26) * 24;
+      px = 640 + Math.sin(p * 2.2) * 14;
+    }
+    set($('puppy'), 'transform', `translate(${px},${G - py}) scale(${pFlip},1)`);
+    set($('pupHead'), 'transform', `rotate(${-pHead} -40 -80)`);
+    set($('pupTail'), 'transform', `rotate(${-pTail} 52 -62)`);
+    set($('pupLegF'), 'transform', `rotate(${legPh} -30 -40)`);
+    set($('pupLegB'), 'transform', `rotate(${-legPh} 34 -40)`);
+    set($('pupEar'), 'transform', `rotate(${Math.sin(t * 9) * 4 + (inRange(t, 15.15, 15.65) ? -25 : 0)} -34 -140)`);
+
+    // ===== cracker =====
+    let cx = track(t, [[0, 352], [0.8, CRX]]), cy = track(t, [[0, G - 64], [0.8, G]]);
+    let tip = track(t, [[10.4, 0], [10.82, 94], [10.95, 84], [11.08, 90], [15.3, 90], [15.62, 0]], p => p);
+    if (inRange(t, 10.4, 11.08)) tip = track(t, [[10.4, 0], [10.82, 94], [10.95, 84], [11.08, 90]], ein);
+    if (inRange(t, 15.3, 15.62)) tip = lerp(90, 0, back(seg(t, 15.3, 15.62)));
+    let cScale = 1, cVisible = true, launch = 0;
+    if (t >= 15.8) {
+      launch = seg(t, 15.8, 16.5);
+      const e = ein(launch) * 0.75 + launch * 0.25;
+      cx = lerp(CRX, 540, e); cy = lerp(G, LY, e); cScale = lerp(1, 0.5, e);
+      if (t >= 16.5) cVisible = false;
+    }
+    const shake = inRange(t, 15.0, 15.3) || inRange(t, 15.62, 15.8) ? Math.sin(t * 120) * 3 : 0;
+    set($('cracker'), 'transform', `translate(${cx + shake},${cy}) scale(${cScale})`);
+    set($('cracker'), 'opacity', cVisible ? 1 : 0);
+    set($('crackerBody'), 'transform', `rotate(${tip} 35 0)`);
+    // fuse burn 2.2 - 8.6
+    const burn = seg(t, 2.2, 8.6);
+    const rem = FUSE_LEN * (1 - burn);
+    set(fuse, 'stroke-dasharray', `${Math.max(0.01, rem)} ${FUSE_LEN + 10}`);
+    const fuseLit = (t >= 2.2 && t < 8.65) || inRange(t, 15.0, 15.3) || inRange(t, 15.62, 15.8);
+    let fp = fuse.getPointAtLength(Math.max(0, rem));
+    if (t >= 15.0) fp = { x: 0, y: -132 };
+    set(fuseSpark, 'transform', `rotate(${tip} 35 0) translate(${fp.x},${fp.y})`);
+    set(fuseCore, 'opacity', fuseLit ? 0.9 : 0);
+    fuseLines.forEach((l, i) => {
+      if (!fuseLit) { set(l, 'opacity', 0); return; }
+      const k = Math.floor(t * 30) * 17 + i * 3;
+      const a = -Math.PI / 2 + (rnd(k) - 0.5) * Math.PI * 1.6, r2 = 8 + rnd(k + 1) * 24;
+      set(l, 'x1', 0); set(l, 'y1', 0); set(l, 'x2', Math.cos(a) * r2); set(l, 'y2', Math.sin(a) * r2);
+      set(l, 'opacity', 0.5 + rnd(k + 2) * 0.5);
+    });
+    // flame under the launching cracker
+    const flameOn = t >= 15.72 && t < 16.5;
+    set($('crackerFlame'), 'opacity', flameOn ? 1 : 0);
+    if (flameOn) { const f = 0.8 + rnd(Math.floor(t * 30)) * 0.5; set($('crackerFlame'), 'transform', `scale(${0.9 + launch * 0.4},${f + launch})`); }
+    // smoke trail
+    trail.forEach((c, i) => {
+      const t0 = 15.85 + i * 0.065, age = t - t0;
+      if (age < 0 || age > 1.4 || t0 > 16.5) { set(c, 'opacity', 0); return; }
+      const e = ein(seg(t0, 15.8, 16.5)) * 0.75 + seg(t0, 15.8, 16.5) * 0.25;
+      const [wx, wy] = world(lerp(CRX, 540, e), lerp(G, LY, e)); set(c, 'cx', wx + (rnd(i) - 0.5) * 20); set(c, 'cy', wy + age * 30);
+      set(c, 'r', 12 + age * 26); set(c, 'opacity', 0.55 * (1 - age / 1.4));
+    });
+
+    // ===== pfft puff at 10.2 =====
+    puffs.forEach((c, i) => {
+      const age = t - 10.22 - i * 0.04;
+      if (age < 0 || age > 1.3) { set(c, 'opacity', 0); return; }
+      const a = -Math.PI / 2 + (i - 3) * 0.42;
+      set(c, 'cx', CRX + Math.cos(a) * age * 70 + (i - 3) * 4); set(c, 'cy', G - 140 + Math.sin(a) * age * 60 - age * 30);
+      set(c, 'r', 10 + eout(Math.min(1, age / 0.6)) * 22); set(c, 'opacity', 0.9 * (1 - age / 1.3));
+    });
+
+    // ===== question mark 9.35 - 10.25 =====
+    const q = seg(t, 9.35, 9.55) * (1 - seg(t, 10.05, 10.25));
+    set($('qmark'), 'opacity', q);
+    set($('qmark'), 'transform', `translate(${bx + 70},${G - 380 - crouch * 0.5 + (1 - q) * 20})`);
+
+    // ===== bursts =====
+    const fa = t - 16.5;
+    set(flash, 'cx', 540); set(flash, 'cy', 470);
+    set(flash, 'r', fa >= 0 ? eout(clamp(fa / 0.35)) * 260 : 0);
+    set(flash, 'opacity', fa >= 0 ? 1 - clamp(fa / 0.5) : 0);
+    BURSTS.forEach((b, bi) => {
+      b.lines.forEach((l, i) => {
+        const age = t - b.t, life = 1.6 + rnd(bi * 100 + i) * 0.9;
+        if (age < 0 || age > life) { set(l, 'opacity', 0); return; }
+        const a = (i / b.n) * Math.PI * 2 + (rnd(bi * 50 + i) - 0.5) * 0.2;
+        const v = lerp(b.speed[0], b.speed[1], rnd(bi * 70 + i));
+        const d = v * (1 - Math.exp(-age * 2.4)) / 2.4;  // drag
+        const fall = 70 * age * age;                      // gravity
+        const x = b.x + Math.cos(a) * d, y = b.y + Math.sin(a) * d + fall;
+        const tl = Math.max(4, 34 * Math.exp(-age * 2.2));
+        set(l, 'x1', x); set(l, 'y1', y);
+        set(l, 'x2', x - Math.cos(a) * tl); set(l, 'y2', y - Math.sin(a) * tl - fall * 0.05);
+        set(l, 'stroke', b.cols[i % b.cols.length]);
+        const tw = age > life * 0.55 ? (rnd(Math.floor(t * 30) + i) > 0.35 ? 1 : 0.2) : 1;
+        set(l, 'opacity', (1 - age / life) * tw);
+      });
+    });
+
+    // ===== petals =====
+    petals.forEach((el, i) => {
+      const t0 = 16.55 + rnd(i + 900) * 1.6, age = t - t0;
+      if (age < 0) { set(el, 'opacity', 0); return; }
+      const sxp = 540 + (rnd(i + 300) - 0.5) * 120, syp = 470 + (rnd(i + 400) - 0.5) * 80;
+      const spread = (rnd(i + 500) - 0.5) * 900;
+      const x = sxp + spread * (1 - Math.exp(-age * 1.6)) + Math.sin(age * 2.2 + i) * 26;
+      const y = syp + (rnd(i + 600) * 50 + 70) * age - 120 * Math.exp(-age * 2) + 120;
+      const landed = y > G - 6 + rnd(i) * 140;
+      set(el, 'cx', 0); set(el, 'cy', 0);
+      set(el, 'transform', `translate(${x},${Math.min(y, G + 200)}) rotate(${age * 140 * (rnd(i + 700) - 0.5) * 2 + i * 30})`);
+      set(el, 'opacity', landed ? 0 : 1);
+    });
+
+    // ===== diyas =====
+    diyas.forEach((d, i) => {
+      const lit = seg(t, 17.0 + i * 0.28, 17.25 + i * 0.28);
+      const fl = 0.85 + 0.15 * Math.sin(t * 17 + i * 2) + 0.08 * rnd(Math.floor(t * 30) + i * 13);
+      set(d.flame, 'opacity', lit);
+      set(d.flame, 'transform', `translate(0,-16) scale(${lit * (0.95 + 0.1 * Math.sin(t * 11 + i))},${lit * fl}) translate(0,16)`);
+      set(d.glow, 'opacity', lit * (0.75 + 0.25 * Math.sin(t * 9 + i)));
+    });
+    set($('warmth'), 'opacity', seg(t, 17.0, 19.2));
+
+    // ===== end card =====
+    const w = seg(t, 20.2, 21.0);
+    set($('endcard'), 'opacity', w);
+    set($('wish'), 'transform', `translate(540,1450) scale(${lerp(0.7, 1, back(w))}) translate(-540,-1450)`);
+    stars.forEach((s, i) => {
+      const a = seg(t, 20.6 + i * 0.12, 21.0 + i * 0.12);
+      const [x, y] = STAR_POS[i];
+      set(s, 'transform', `translate(${x},${y}) rotate(${t * 40 + i * 20}) scale(${a * (0.8 + 0.25 * Math.sin(t * 5 + i))})`);
+    });
+    const n = seg(t, 21.0, 21.7);
+    set($('sender'), 'opacity', n);
+    set($('sender'), 'transform', `translate(0,${(1 - eout(n)) * 24})`);
+  }
+
+  // occasional blinks (returns 0..1 lid amount), offset per character
+  function blink(t, off) {
+    const period = 3.1, ph = ((t + off) % period) / period;
+    return ph > 0.96 ? Math.sin((ph - 0.96) / 0.04 * Math.PI) : 0;
+  }
+
+  window.DURATION = DURATION;
+  window.setTime = setTime;
+  setTime(0);
+  if (!params.has('render')) {
+    const start = performance.now();
+    const loop = () => { setTime(((performance.now() - start) / 1000) % (DURATION + 1)); requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+  }
+})();
+</script>
+</body>
+</html>
