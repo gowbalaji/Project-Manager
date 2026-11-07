@@ -1,5 +1,5 @@
 // Render scene.html to an MP4 (1080x1920, 30 fps) with the synthesized soundtrack.
-// Usage: node render.js [out.mp4] ["Sender line"]
+// Usage: node render.js [out.mp4] ["Sender line"] [comic]
 // Needs: playwright (Chromium), ffmpeg, python3 + numpy.
 const { chromium } = require('playwright');
 const { execFileSync } = require('child_process');
@@ -10,6 +10,7 @@ const path = require('path');
 const FPS = 30;
 const out = path.resolve(process.argv[2] || path.join(__dirname, 'diwali-wish.mp4'));
 const name = process.argv[3];
+const style = process.argv[4];
 
 (async () => {
   const work = fs.mkdtempSync(path.join(os.tmpdir(), 'diwali-'));
@@ -22,6 +23,7 @@ const name = process.argv[3];
   page.on('pageerror', e => errors.push(e.message));
   const q = new URLSearchParams({ render: '1' });
   if (name) q.set('name', name);
+  if (style) q.set('style', style);
   await page.goto('file://' + path.join(__dirname, 'scene.html') + '?' + q);
   await page.evaluate(() => document.fonts.ready);
   const duration = await page.evaluate(() => window.DURATION);

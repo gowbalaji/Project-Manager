@@ -9,12 +9,14 @@ Status: **v1 rendered** as hand-built 2D vector animation (the user chose this o
 | `scene.html` | SVG scene + characters; `setTime(t)` draws any frame deterministically. Open in a browser to preview it playing live |
 | `audio.py` | Synthesizes the whole soundtrack with numpy (sound effects, music, tabla, diya chimes): nothing to license |
 | `render.js` | Playwright captures 690 frames at 30 fps, 1080×1920 → ffmpeg H.264 + AAC, loudness-normalized to -14 LUFS |
-| `diwali-wish.mp4` | The output: 23 s, 9:16 |
+| `diwali-wish.mp4` | v1 output, flat cartoon: 23 s, 9:16 |
+| `diwali-wish-comic.mp4` | Comic-book version: ink outlines, halftone, ray bursts, focus/speed lines, SFX lettering, narration boxes, punch-in camera, animated on twos |
 
 Re-render with your own sender line (about 1 minute):
 
 ```
 node render.js diwali-wish.mp4 "From the Balaji family"
+node render.js diwali-wish-comic.mp4 "From the Balaji family" comic
 ```
 
 Because the AI route was dropped, the cost estimate and AI-risk notes below are kept only for reference.

@@ -7,13 +7,15 @@
   "The Big One": a 2D vector Diwali wish. 1080x1920, 23 seconds.
   Rendering is deterministic: window.setTime(t) draws the frame at t seconds.
   Open in a browser to preview (plays in real time); render.js captures frames.
-  Change the sender line with ?name=Your%20Name in the URL.
+  Change the sender line with ?name=Your%20Name in the URL; add &style=comic for the comic-book version.
 -->
 <style>
+  @font-face { font-family: 'Bangers'; src: url('fonts/Bangers-Regular.ttf'); }
   @font-face { font-family: 'Baloo'; src: url('fonts/Baloo2-ExtraBold.ttf'); font-weight: 800; }
   html, body { margin: 0; height: 100%; background: #FDF6E3; overflow: hidden; }
   svg { display: block; width: 100vw; height: 100vh; }
   .ol { stroke: #3B2416; stroke-width: 4; stroke-linejoin: round; stroke-linecap: round; }
+  .comic .ol { stroke: #111; stroke-width: 6.5; }
 </style>
 </head>
 <body>
@@ -42,9 +44,27 @@
       <stop offset="0" stop-color="#FFC56B" stop-opacity="0.22"/>
       <stop offset="1" stop-color="#FFC56B" stop-opacity="0"/>
     </radialGradient>
+    <pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <circle cx="10" cy="10" r="4.2" fill="#F2A93B"/>
+    </pattern>
+    <radialGradient id="edgeFade" gradientUnits="userSpaceOnUse" cx="540" cy="960" r="1100">
+      <stop offset="0.42" stop-color="#000"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+    <mask id="edgeMask" maskUnits="userSpaceOnUse" x="-1000" y="-1000" width="3080" height="3920">
+      <rect x="-1000" y="-1000" width="3080" height="3920" fill="url(#edgeFade)"/>
+    </mask>
+    <filter id="ink" x="-10%" y="-10%" width="125%" height="125%">
+      <feFlood flood-color="#111" result="f"/>
+      <feComposite in="f" in2="SourceAlpha" operator="in" result="sh"/>
+      <feOffset dx="5" dy="5" result="o"/>
+      <feMerge><feMergeNode in="o"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
-  <rect width="1080" height="1920" fill="#FDF6E3"/>
+  <g id="cam">
+  <rect x="-1000" y="-1000" width="3080" height="3920" fill="#FDF6E3"/>
+  <rect id="halftone" x="-1000" y="-1000" width="3080" height="3920" fill="url(#dots)" mask="url(#edgeMask)" opacity="0"/>
   <rect id="warmth" width="1080" height="1920" fill="url(#warm)" opacity="0"/>
 
   <!-- marigold toran across the top -->
@@ -53,6 +73,7 @@
   <g id="rangoli" opacity="0.55"></g>
 
   <!-- ground line -->
+  <g id="rays"></g>
   <path d="M70,1150 Q300,1146 540,1151 T1010,1149" fill="none" stroke="#5B4636" stroke-width="4" stroke-linecap="round"/>
 
   <!-- burst fx sits behind characters -->
@@ -183,6 +204,11 @@
   <!-- diyas, petals in the foreground -->
   <g id="diyas"></g>
   <g id="petals"></g>
+  <g id="focus"></g>
+  <g id="sfx"></g>
+  </g>
+  <g id="captions"></g>
+  <g id="panel"></g>
 
   <!-- the wish -->
   <g id="endcard" opacity="0">
@@ -316,7 +342,7 @@
   }
 
   // ---------- frame ----------
-  function setTime(t) {
+  function drawBase(t) {
     // ===== boy =====
     const bx = track(t, [[0, 420], [3.0, 420], [4.4, 650]]);
     let lean = track(t, [[0, 0], [0.15, 0], [0.8, -16], [1.1, -16], [1.45, 0], [1.7, 0], [2.15, -12], [2.5, -12], [2.75, 5], [3.0, 0], [8.6, 0], [9.6, -9], [10.15, -9], [10.6, 0]]);
@@ -538,6 +564,177 @@
   function blink(t, off) {
     const period = 3.1, ph = ((t + off) % period) / period;
     return ph > 0.96 ? Math.sin((ph - 0.96) / 0.04 * Math.PI) : 0;
+  }
+
+  // ================= COMIC STYLE (?style=comic) =================
+  const COMIC = params.get('style') === 'comic';
+  let drawComic = () => {};
+  if (COMIC) {
+    document.body.classList.add('comic');
+    $('halftone').setAttribute('opacity', 1);
+    $('actors').setAttribute('filter', 'url(#ink)');
+    $('qmark').setAttribute('font-family', 'Bangers');
+    $('qmark').setAttribute('fill', '#FFD23F'); $('qmark').setAttribute('stroke', '#111');
+    $('qmark').setAttribute('stroke-width', 7); $('qmark').setAttribute('paint-order', 'stroke'); $('qmark').setAttribute('font-size', 120);
+
+    // --- ray bursts (behind the actors) ---
+    const rays = $('rays');
+    const makeRays = (n, r, a, b) => {
+      const g = mk('g', { opacity: 0 }, rays);
+      for (let i = 0; i < n; i++) {
+        const a0 = i / n * Math.PI * 2, a1 = (i + 0.5) / n * Math.PI * 2;
+        mk('path', { d: `M0,0 L${Math.cos(a0) * r},${Math.sin(a0) * r} L${Math.cos(a1) * r},${Math.sin(a1) * r} Z`, fill: i % 2 ? a : b }, g);
+      }
+      return g;
+    };
+    const rayIgnite = makeRays(28, 900, '#FFE27A', '#FFF3C4');
+    const rayPfft = makeRays(28, 900, '#E6E1D8', '#F4F0E8');
+    const rayBoom = makeRays(36, 1600, '#FFD86B', '#FFF0BE');
+    const rayJoy = makeRays(36, 1600, '#FFE9A8', '#FDF6E3');
+
+    // --- manga focus lines (in front) ---
+    const focus = $('focus');
+    const makeFocus = n => {
+      const g = mk('g', { opacity: 0 }, focus);
+      for (let i = 0; i < n; i++) {
+        const a = i / n * Math.PI * 2 + rnd(i) * 0.05, w = 0.012 + rnd(i + 9) * 0.02, rin = 330 + rnd(i + 3) * 260;
+        mk('path', { d: `M${Math.cos(a - w) * 1500},${Math.sin(a - w) * 1500} L${Math.cos(a) * rin},${Math.sin(a) * rin} L${Math.cos(a + w) * 1500},${Math.sin(a + w) * 1500} Z`, fill: '#111' }, g);
+      }
+      return g;
+    };
+    const focusA = makeFocus(70), focusB = makeFocus(90);
+
+    // --- speed lines ---
+    const runLines = Array.from({ length: 7 }, () => mk('line', { stroke: '#111', 'stroke-width': 5, 'stroke-linecap': 'round', opacity: 0 }, focus));
+    const upLines = Array.from({ length: 8 }, () => mk('line', { stroke: '#111', 'stroke-width': 5, 'stroke-linecap': 'round', opacity: 0 }, focus));
+
+    // --- lettering ---
+    const sfxG = $('sfx');
+    const mkSfx = (txt, size, fill, shadow = '#D2342A', balloon = null) => {
+      const g = mk('g', { opacity: 0 }, sfxG);
+      if (balloon) {
+        const [ro, ri, n] = balloon; let d = '';
+        for (let i = 0; i < n * 2; i++) { const a = i / (n * 2) * Math.PI * 2, r = (i % 2 ? ri : ro) * (0.9 + rnd(i + 77) * 0.2); d += `${i ? 'L' : 'M'}${Math.cos(a) * r * 1.25},${Math.sin(a) * r} `; }
+        mk('path', { d: d + 'Z', fill: '#D2342A', transform: 'translate(10,10)' }, g);
+        mk('path', { d: d + 'Z', fill: '#FFF6C9', stroke: '#111', 'stroke-width': 9, 'stroke-linejoin': 'round' }, g);
+      }
+      const base = { 'font-family': 'Bangers', 'font-size': size, 'text-anchor': 'middle', 'dominant-baseline': 'middle', 'stroke-linejoin': 'round', 'letter-spacing': size * 0.04 };
+      const sh = mk('text', { ...base, x: size * 0.07, y: size * 0.07, fill: shadow, stroke: shadow, 'stroke-width': size * 0.16 }, g); sh.textContent = txt;
+      const tx = mk('text', { ...base, fill, stroke: '#111', 'stroke-width': size * 0.11, 'paint-order': 'stroke' }, g); tx.textContent = txt;
+      return g;
+    };
+    // [element, x, y, rotation, t0, t1, drift-y per second]
+    const SFX = [
+      [mkSfx('TSSSSS...', 64, '#FFD23F'), 150, 850, -10, 2.3, 4.7, -6],
+      [mkSfx('SSSSS...', 50, '#FFE9A0'), 190, 860, -6, 5.4, 8.6, -4],
+      [mkSfx('pfft.', 74, '#ECE7DE', '#8E8577'), 235, 870, -6, 10.22, 11.3, -12],
+      [mkSfx('WAH-WAH...', 84, '#A9BEDF', '#4A5D7A'), 770, 610, 7, 11.05, 12.95, 22],
+      [mkSfx('SNIFF SNIFF', 46, '#F1D3A6', '#A86B3C'), 400, 930, -10, 13.9, 15.0, -6],
+      [mkSfx('?!', 100, '#FFD23F'), 470, 880, 12, 15.05, 15.75, 0],
+      [mkSfx('FWOOOSH!', 92, '#FF8A1F'), 175, 720, -72, 15.78, 16.6, 0],
+      [mkSfx('KA-BOOM!', 150, '#FFD23F', '#D2342A', [300, 200, 13]), 540, 460, -6, 16.5, 18.1, 0],
+      [mkSfx('YAAAY!', 96, '#FF5C8A', '#8A1F45'), 820, 690, 8, 17.4, 19.9, -8],
+    ];
+
+    // --- narration captions (screen space) ---
+    const capG = $('captions');
+    const mkCap = txt => {
+      const g = mk('g', { opacity: 0 }, capG);
+      const r = mk('rect', { x: 0, y: -46, height: 92, fill: '#FFE45C', stroke: '#111', 'stroke-width': 6 }, g);
+      const tx = mk('text', { x: 28, y: 4, 'font-family': 'Bangers', 'font-size': 58, fill: '#111', 'dominant-baseline': 'middle', 'letter-spacing': 2 }, g); tx.textContent = txt;
+      return { g, r, tx };
+    };
+    const CAPS = [[mkCap('DIWALI NIGHT...'), 0.2, 3.0], [mkCap('WAIT FOR IT...'), 8.65, 10.15], [mkCap('...OR NOT.'), 11.4, 13.1]];
+
+    // --- panel border ---
+    const panel = $('panel');
+    mk('rect', { x: -40, y: -40, width: 1160, height: 2000, fill: 'none', stroke: '#FFFFFF', 'stroke-width': 124 }, panel);
+    mk('rect', { x: 22, y: 22, width: 1036, height: 1876, fill: 'none', stroke: '#111', 'stroke-width': 12, rx: 6 }, panel);
+
+    // --- comic end card ---
+    const wish = $('wish');
+    Object.entries({ 'font-family': 'Bangers', 'font-weight': 400, 'font-size': 150, fill: '#FFD23F', stroke: '#111', 'stroke-width': 12, 'letter-spacing': 6 }).forEach(([k, v]) => wish.setAttribute(k, v));
+    wish.textContent = 'HAPPY DIWALI!';
+    const ws = wish.cloneNode(true); ws.removeAttribute('id');
+    Object.entries({ fill: '#D2342A', stroke: '#D2342A', x: 552, y: 1512 }).forEach(([k, v]) => ws.setAttribute(k, v));
+    const wb = mkSfx('', 10, '#000', '#000', [420, 300, 16]); // starburst only
+    $('endcard').insertBefore(wb, wish); wb.setAttribute('opacity', 1); wb.setAttribute('transform', 'translate(540,1462) scale(0.9,0.46)');
+    $('endcard').insertBefore(ws, wish);
+    const sender = $('sender');
+    Object.entries({ 'font-family': 'Bangers', 'font-weight': 400, 'font-size': 60, fill: '#111', 'letter-spacing': 2, y: 1752 }).forEach(([k, v]) => sender.setAttribute(k, v));
+    sender.textContent = sender.textContent.toUpperCase();
+    const sbox = mk('rect', { y: 1702, height: 96, fill: '#FFE45C', stroke: '#111', 'stroke-width': 6, opacity: 0 }, $('stage'));
+    $('stage').insertBefore(sbox, sender);
+
+    // --- camera: comic "panel" punch-ins ---
+    const CAM = [ // t, scale, centre x, centre y
+      [0, 1, 540, 960], [2.0, 1, 540, 960], [2.3, 1.5, 300, 990], [2.9, 1.5, 300, 990], [3.3, 1, 540, 960],
+      [8.6, 1, 540, 960], [10.15, 1.12, 470, 1000], [10.22, 1.75, 250, 1040], [11.0, 1.75, 250, 1040],
+      [11.3, 1.6, 760, 900], [12.9, 1.6, 760, 900], [13.4, 1, 540, 960],
+      [15.0, 1, 540, 960], [15.2, 1.25, 430, 1020], [15.7, 1.25, 430, 1020], [16.2, 1, 540, 960]];
+    const camAt = (t, idx) => track(t, CAM.map(k => [k[0], k[idx]]));
+
+    drawComic = t => {
+      // camera
+      let s = camAt(t, 1), cxm = camAt(t, 2), cym = camAt(t, 3);
+      if (t >= 10.15 && t < 10.22) { s = 1.75; cxm = 250; cym = 1040; } // hard snap
+      let shx = 0, shy = 0;
+      if (t >= 16.5 && t < 17.0) { const a = (1 - seg(t, 16.5, 17.0)) * 16; shx = (rnd(Math.floor(t * 15)) - 0.5) * a * 2; shy = (rnd(Math.floor(t * 15) + 5) - 0.5) * a * 2; }
+      set($('cam'), 'transform', `translate(540,960) scale(${s}) translate(${-cxm + shx},${-cym + shy})`);
+
+      // rays
+      const rayShow = (g, a, b, x, y, spin) => { const o = seg(t, a, a + 0.12) * (1 - seg(t, b - 0.25, b)); set(g, 'opacity', o); set(g, 'transform', `translate(${x},${y}) rotate(${t * spin})`); };
+      rayShow(rayIgnite, 2.22, 3.0, 185, 945, 20);
+      rayShow(rayPfft, 10.22, 11.1, 227, 1000, 0);
+      rayShow(rayBoom, 16.5, 18.6, 540, 470, 8);
+      rayShow(rayJoy, 18.4, 23.5, 540, 470, 5);
+      // focus lines
+      const fo = (g, a, b, x, y) => { set(g, 'opacity', (t >= a && t < b) ? 1 : 0); set(g, 'transform', `translate(${x},${y}) rotate(${Math.floor(t * 15) % 2 * 1.5})`); };
+      fo(focusA, 10.22, 10.9, 227, 1000);
+      fo(focusB, 16.5, 17.05, 540, 470);
+      // speed lines while the boy runs (3.0 - 4.4)
+      const bxw = 540 + (track(t, [[0, 420], [3.0, 420], [4.4, 650]]) - 540) * 1.25;
+      runLines.forEach((l, i) => {
+        const on = t >= 3.0 && t < 4.5; set(l, 'opacity', on ? 0.9 : 0); if (!on) return;
+        const y = 860 + i * 40 + (rnd(i + Math.floor(t * 15)) - 0.5) * 10, len = 90 + rnd(i * 3 + Math.floor(t * 15)) * 140;
+        const x2 = bxw - 90 - rnd(i + 40) * 30;
+        set(l, 'x1', x2 - len); set(l, 'x2', x2); set(l, 'y1', y); set(l, 'y2', y);
+      });
+      // speed lines under the launching cracker (15.8 - 16.5)
+      const lp = seg(t, 15.8, 16.5), le = ein(lp) * 0.75 + lp * 0.25;
+      const lx = 540 + (lerp(CRX, 540, le) - 540) * 1.25, ly = G + (lerp(G, LY, le) - G) * 1.25;
+      upLines.forEach((l, i) => {
+        const on = t >= 15.85 && t < 16.5; set(l, 'opacity', on ? 0.85 : 0); if (!on) return;
+        const x = lx + (i - 3.5) * 22, y0 = ly + 90 + rnd(i + Math.floor(t * 15)) * 60;
+        set(l, 'x1', x); set(l, 'x2', x); set(l, 'y1', y0); set(l, 'y2', y0 + 120 + rnd(i * 7) * 160);
+      });
+      // lettering
+      SFX.forEach(([g, x, y, rot, a, b, drift]) => {
+        if (t < a || t >= b) { set(g, 'opacity', 0); return; }
+        const pop = back(seg(t, a, a + 0.2)), out = 1 - seg(t, b - 0.25, b);
+        const wob = Math.sin(Math.floor(t * 15) * 1.7) * 2.5;
+        set(g, 'opacity', out);
+        set(g, 'transform', `translate(${x},${y + (t - a) * drift}) rotate(${rot + wob}) scale(${Math.max(0.01, pop)})`);
+      });
+      // captions
+      CAPS.forEach(([c, a, b]) => {
+        const o = seg(t, a, a + 0.15) * (1 - seg(t, b - 0.2, b));
+        const w = c.tx.getComputedTextLength() + 56;
+        set(c.r, 'width', w); set(c.g, 'opacity', o);
+        set(c.g, 'transform', `translate(60,300) rotate(-2)`);
+      });
+      // end card: starburst + sender box follow the existing fades
+      set(ws, 'transform', wish.getAttribute('transform') || '');
+      const sw = sender.getComputedTextLength() + 70;
+      set(sbox, 'x', 540 - sw / 2); set(sbox, 'width', sw); set(sbox, 'opacity', sender.getAttribute('opacity'));
+      set(sbox, 'transform', sender.getAttribute('transform') || '');
+    };
+  }
+
+  function setTime(t) {
+    const tq = COMIC ? Math.floor(t * 15 + 1e-6) / 15 : t; // comic mode animates "on twos"
+    drawBase(tq);
+    drawComic(tq);
   }
 
   window.DURATION = DURATION;
