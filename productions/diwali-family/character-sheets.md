@@ -34,17 +34,23 @@ smile. Same character, same outfit, same scale in every panel.
 
 ## 1. Mother
 
+References: **@photo** = front-facing photo (pink saree, main identity), **@photo2** = laughing photo (smile only),
+**@style** = `refs/style-ref.jpg`. The photos are kept out of this repo on purpose.
+
 ```
 Character turnaround sheet of a South Indian mother, drawn in the style of @style.
 
-IDENTITY: her face shape, eyes, nose, lips, hairline, hairstyle, skin tone and build come from @photo, translated into the illustration style. She must be recognisable as the woman in @photo. @style controls the drawing style only, never her face.
+IDENTITY (most important): she is the woman in @photo, translated into the illustration style and clearly recognisable as her. Keep her real features: a soft oval face with full cheeks and a rounded chin, warm medium-brown skin (keep this exact depth of skin tone, do NOT lighten it), dark brown eyes with a gentle, slightly hooded shape, straight natural brows, a small rounded nose with a tiny gold nose stud on her left nostril, full lips, and black hair pulled back from the forehead into a low bun. A tiny dark bindi. Her natural build, not slimmed. Use @photo2 only for how her smile looks: a wide, warm, open laugh. @style controls the drawing style only; it must NOT change her face shape, chin, skin tone or body build.
 
-OUTFIT: [a deep maroon Kanchipuram silk saree with a broad gold zari border, matching maroon blouse with elbow-length sleeves], [jasmine flowers in a low bun], small gold jhumka earrings, a thin gold chain, gold bangles on both wrists, a small red bindi.
+OUTFIT: [a deep maroon Kanchipuram silk saree with a broad gold zari border, matching maroon blouse with elbow-length sleeves], [jasmine flowers around the low bun], gold jhumka drop earrings, a thin gold chain, a thin gold bangle on each wrist.
 
-STYLE: match the drawing style of @style exactly: hand-drawn 2D character illustration in the look of modern animated-feature concept art. Loose, confident sketchy ink linework in dark brown-black with visible overshoot strokes; flat painted colour with soft dry-brush texture and a few loose strokes for fabric folds; minimal shading in one slightly darker tone. Stylised proportions: slender elongated neck, small pointed chin, large almond eyes with a thick black upper lash line, bold expressive brows, small nose, warm brown skin with peach blush on cheeks and nose tip. Muted, earthy palette. NOT photoreal, NOT 3D, NOT anime, NOT chibi.
+STYLE: match the drawing style of @style: hand-drawn 2D character illustration in the look of modern animated-feature concept art. Loose, confident sketchy ink linework in dark brown-black with visible overshoot strokes; flat painted colour with soft dry-brush texture and a few loose strokes for fabric folds; minimal shading in one slightly darker tone. Large expressive eyes with a thick black upper lash line and peach blush on cheeks and nose tip, but her own face shape and proportions. Muted, earthy palette. NOT photoreal, NOT 3D, NOT anime, NOT chibi.
 
-SHEET: 3 panels side by side on a plain flat off-white background, no scenery, no props, no text, no labels, no cast shadows. Panel 1: full body, front view, standing straight, arms relaxed at her sides. Panel 2: full body, back view, showing the bun and the saree pallu. Panel 3: head-and-shoulders close-up, front view, soft closed-mouth smile. Same character, same outfit, same scale in every panel.
+SHEET: 3 panels side by side on a plain flat off-white background, no scenery, no props, no text, no labels, no cast shadows. Panel 1: full body, front view, standing straight, arms relaxed at her sides. Panel 2: full body, back view, showing the bun with jasmine and the saree pallu. Panel 3: head-and-shoulders close-up, front view, warm open smile as in @photo2. Same character, same outfit, same scale in every panel.
 ```
+
+**Check:** show the close-up panel to someone who knows her, without telling them who it is. If they don't say
+her name, the likeness failed: regenerate before making any other sheet.
 
 ## 2. Father
 
