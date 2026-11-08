@@ -115,3 +115,19 @@ Same drawing style as @style: loose sketchy ink linework, flat dry-brush colour,
 3. Outfit identical in the front and back panels?
 4. Twins: same face, different colour only?
 5. No text or labels on the image?
+
+---
+
+## Option B: one family sheet from the group selfie (current approach)
+
+References: **@photo** = the family selfie (left to right: father, Twin A, mother, Twin B; background people ignored),
+**@style** = `refs/style-ref.jpg`. The photo is kept out of this repo on purpose.
+
+Changes from the per-person plan:
+- The twins look different in the selfie (round face with hair pulled back vs longer face with loose waves), so each
+  is drawn from her own face. Twin B is NOT copied from Twin A unless they turn out to be identical.
+- Both parents wear glasses in the selfie: father gold-rimmed rectangular, mother thin silver rimless.
+- Layout: one image with 4 full-body front views on top and 4 face close-ups below. No back views; add them later
+  per person if the video needs turns.
+
+The full prompt was shared in chat on 2026-11-08; regenerate it from the details above if needed.
