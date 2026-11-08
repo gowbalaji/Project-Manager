@@ -100,7 +100,7 @@ Re-check before choosing.
 ## Decisions
 
 1. Characters: boy, sister, puppy (chosen).
-2. Wish text: "Happy Diwali" + sender line. **The sender name is still a placeholder** ("From our family to yours").
+2. Wish text: "Happy Diwali" + sender line. Sender line: "From Gowtham and Family".
 3. Route: 2D vector, no generation (chosen).
 
 ## Known limits of v1
