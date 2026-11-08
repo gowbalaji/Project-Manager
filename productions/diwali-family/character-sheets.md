@@ -42,7 +42,7 @@ Character turnaround sheet of a South Indian mother, drawn in the style of @styl
 
 IDENTITY (most important): she is the woman in @photo, translated into the illustration style and clearly recognisable as her. Keep her real features: a soft oval face with full cheeks and a rounded chin, warm medium-brown skin (keep this exact depth of skin tone, do NOT lighten it), dark brown eyes with a gentle, slightly hooded shape, straight natural brows, a small rounded nose with a tiny gold nose stud on her left nostril, full lips, and black hair pulled back from the forehead into a low bun. A tiny dark bindi. Her natural build, not slimmed. Use @photo2 only for how her smile looks: a wide, warm, open laugh. @style controls the drawing style only; it must NOT change her face shape, chin, skin tone or body build.
 
-OUTFIT: [a deep maroon Kanchipuram silk saree with a broad gold zari border, matching maroon blouse with elbow-length sleeves], [jasmine flowers around the low bun], gold jhumka drop earrings, a thin gold chain, a thin gold bangle on each wrist.
+OUTFIT (the same saree as in @photo): a soft pastel-pink saree with darker rose-pink floral and leaf motifs washed through the fabric, a scalloped embroidered pink border lined with tiny sparkling stones, the pallu draped over her left shoulder; a matching light-pink blouse with short sleeves and scalloped sleeve edges. Jasmine flowers around the low bun, gold jhumka drop earrings, a thin gold chain with a small beaded pendant, a thin gold bangle on each wrist.
 
 STYLE: match the drawing style of @style: hand-drawn 2D character illustration in the look of modern animated-feature concept art. Loose, confident sketchy ink linework in dark brown-black with visible overshoot strokes; flat painted colour with soft dry-brush texture and a few loose strokes for fabric folds; minimal shading in one slightly darker tone. Large expressive eyes with a thick black upper lash line and peach blush on cheeks and nose tip, but her own face shape and proportions. Muted, earthy palette. NOT photoreal, NOT 3D, NOT anime, NOT chibi.
 
@@ -73,7 +73,7 @@ Character turnaround sheet of a [6]-year-old South Indian girl, drawn in the sty
 
 IDENTITY: her face shape, eyes, nose, hairline, hair length, skin tone and build come from @photo, translated into the illustration style with child proportions (bigger head relative to the body, rounder cheeks, shorter limbs). She must be recognisable as the girl in @photo. @style controls the drawing style only, never her face.
 
-OUTFIT: a [rose-pink] silk pattu pavadai (long skirt) with a broad gold border at the hem, a matching [rose-pink] blouse with puff sleeves, [two short braids tied with rose-pink ribbons and a small string of jasmine], small gold stud earrings, thin glass bangles, a small black bindi, bare feet.
+OUTFIT: a [mango-yellow] silk pattu pavadai (long skirt) with a broad gold border at the hem, a matching [mango-yellow] blouse with puff sleeves, [two short braids tied with mango-yellow ribbons and a small string of jasmine], small gold stud earrings, thin glass bangles, a small black bindi, bare feet.
 
 STYLE: match the drawing style of @style exactly: hand-drawn 2D character illustration in the look of modern animated-feature concept art. Loose, confident sketchy ink linework in dark brown-black with visible overshoot strokes; flat painted colour with soft dry-brush texture and a few loose strokes for fabric folds; minimal shading in one slightly darker tone. Large almond eyes with lashes, bold little brows, small nose, warm brown skin with peach blush. Muted, earthy palette. NOT photoreal, NOT 3D, NOT anime, NOT chibi.
 
@@ -101,7 +101,7 @@ One full-body family lineup in the style of @style: the four characters from @mo
 
 Left to right: @mother, @twinA, @twinB, @father. The twins stand in front of and between the parents, reaching about their parents' waist [adjust to real heights]. Mother is about a head shorter than father.
 
-Every character is a 100% match to their own sheet: same face, hair, outfit, colours and proportions. Exactly four people. The twins have identical faces and differ only by outfit colour: rose-pink on the left, peacock-teal on the right.
+Every character is a 100% match to their own sheet: same face, hair, outfit, colours and proportions. Exactly four people. The twins have identical faces and differ only by outfit colour: mango-yellow on the left, peacock-teal on the right.
 
 Same drawing style as @style: loose sketchy ink linework, flat dry-brush colour, muted palette. NOT photoreal, NOT 3D.
 ```
