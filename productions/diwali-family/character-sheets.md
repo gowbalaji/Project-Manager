@@ -131,3 +131,14 @@ Changes from the per-person plan:
   per person if the video needs turns.
 
 The full prompt was shared in chat on 2026-11-08; regenerate it from the details above if needed.
+
+---
+
+## Status (2026-11-08)
+
+Family sheet generated from the first selfie (current look: father with salt-and-pepper beard and gold glasses,
+mother with silver rimless glasses, fraternal-looking twins). Review: style, layout and outfits pass. To confirm:
+likeness, checked by family, and skin tone (possibly a shade light). The sheet image is kept out of the repo.
+
+Next: first-frame still (image tool, sheet as reference), then MiniMax image-to-video. Both prompts are in
+`video-illustrated.md`.
